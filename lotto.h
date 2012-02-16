@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include "sample.h"
 #include "TableWindow.h"
+#include "Para.h"
 
 extern bool debug;
 

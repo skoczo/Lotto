@@ -54,8 +54,6 @@ void Lotto::on_czestosc_clicked()
 				czestosc[numbers[j] - 1]++;
 			}
 		}
-
-		delete (numbers);
 	}
 
 	new TableWindow(this, czestosc, 49);
@@ -66,6 +64,62 @@ void Lotto::on_pary_clicked()
 
 	int ilosc = iloscKombinacji(2, 49);
 	std::cout << ilosc << std::endl;
+
+	QMap<QString, int> *paryMap = new QMap<QString, int> ();
+
+	for (int i = 1; i < 49; i++)
+	{
+		for (int j = i + 1; j <= 49; j++)
+		{
+			paryMap->insert(QString(Para(i, j).toString().c_str()), 0);
+		}
+	}
+
+	if (paryMap->size() != ilosc)
+	{
+		std::cout << "Error: Błędna ilość par!!!! \nJest:" << paryMap->size()
+				<< "\nA powinno:" << ilosc << std::endl;
+		return;
+	}
+
+	for (int i = 0; i < loader->getList().size(); i++)
+	{
+		int *numbers = loader->getList().at(i)->getNumbers();
+
+		for (int j = 0; j < 5; j++)
+		{
+			for (int k = j + 1; k < 6; k++)
+			{
+				if (numbers[j] > 49 || numbers[j] < 1 || numbers[k] > 49
+						|| numbers[k] < 1)
+				{
+					throw NumberException();
+				}
+				QMap<QString, int>::iterator
+						iter =
+								paryMap->find(
+										QString(
+												Para(numbers[j], numbers[k]).toString().c_str()));
+
+				if (iter != paryMap->end())
+				{
+					iter.value()++;
+				}
+			}
+		}
+	}
+
+	if (debug)
+	{
+		std::cout << "Pary\n";
+		for (QMap<QString, int>::iterator it = paryMap->begin(); it
+				!= paryMap->end(); it++)
+		{
+			std::cout << it.key().toStdString() << it.value() << std::endl;
+		}
+	}
+
+	new TableWindow(this, paryMap);
 }
 
 int Lotto::iloscKombinacji(int iloscElementow, int zbior)
