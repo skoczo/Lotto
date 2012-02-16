@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'lotto.ui'
 **
-** Created: Wed Feb 15 21:05:13 2012
+** Created: Thu Feb 16 18:05:22 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

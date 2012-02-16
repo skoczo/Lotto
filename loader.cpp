@@ -27,6 +27,7 @@ Loader::Loader()
 				std::string date = getData(i, data);
 				int *numbers = getNumbers(i, data);
 				Sample* s = new Sample(id, date, numbers);
+				i--;
 				list.push_front(s);
 
 				if (debug)

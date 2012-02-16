@@ -1,22 +1,28 @@
 #ifndef LOTTO_H
 #define LOTTO_H
 
-#include <QtGui/QWidget>
-#include "ui_lotto.h"
-#include "loader.h"
 #include <iostream>
+#include <QtGui/QWidget>
+#include <QMainWindow>
+//#include "ui_lotto.h"
+#include "ui_lottoMain.h"
+#include "loader.h"
 #include <string>
 #include <QDebug>
 #include <QMessageBox>
+#include <QDialog>
+#include "Dodaj.h"
 #include "sample.h"
 #include "TableWindow.h"
 #include "Para.h"
+#include "Trojka.h"
 
 extern bool debug;
 
 class Loader;
+class Dodaj;
 
-class Lotto: public QWidget
+class Lotto: public QMainWindow
 {
 Q_OBJECT
 
@@ -26,16 +32,19 @@ public:
 	static std::string sampleFile;
 
 private slots:
-	void on_trojki_clicked();
-
-	void on_czestosc_clicked();
-	void on_pary_clicked();
-	int silnia(int liczba);
-	int iloscKombinacji(int iloscElementow, int zbior);
-
+    void on_trojki_clicked();
+    void on_czestosc_clicked();
+    void on_pary_clicked();
+    void on_actionDodaj_losowanie_triggered();
 private:
+    int silnia(int liczba);
+    int iloscKombinacji(int iloscElementow, int zbior);
+    void przeladoj();
+	TableWindow *tableCzestosc, *tablePary, *tableTrojki;
+	Dodaj *dodajLos;
 	Loader *loader;
-	Ui::LottoClass ui;
+	Ui::lottoMain ui;
+	bool dodano;
 };
 
 #endif // LOTTO_H
