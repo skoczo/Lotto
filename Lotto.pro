@@ -2,7 +2,8 @@ TEMPLATE = app
 TARGET = Lotto
 QT += core \
     gui
-HEADERS += Trojka.h \
+HEADERS += Generator.h \
+    Trojka.h \
     Dodaj.h \
     Para.h \
     TableWindow.h \
@@ -10,7 +11,8 @@ HEADERS += Trojka.h \
     sample.h \
     loader.h \
     lotto.h
-SOURCES += Trojka.cpp \
+SOURCES += Generator.cpp \
+    Trojka.cpp \
     Dodaj.cpp \
     Para.cpp \
     TableWindow.cpp \

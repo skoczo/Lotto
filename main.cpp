@@ -5,8 +5,6 @@
 #include "loader.h"
 #include "Exceptions.h"
 
-bool debug = false;
-
 int main(int argc, char *argv[])
 {
 	signal(SIGSEGV, handler);
